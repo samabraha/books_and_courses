@@ -2,6 +2,10 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.sound.sampled.SourceDataLine;
+
+import chapter_01.TimeTask;
+
 public class SelectionSort {
 
     public static void swap(int[] array, int a, int b) {
@@ -39,9 +43,24 @@ public class SelectionSort {
             array[i] = random.nextInt(MAX);
         }
 
-        System.out.println(Arrays.toString(array));
+        // System.out.println(Arrays.toString(array));
 
-        sort(array);
-        System.out.println(Arrays.toString(array));
+        long result = TimeTask.timeIt(() ->
+            {
+                sort(array);
+            }
+        );
+
+        System.out.printf("Beffore: %,d nanoseconds%n", result);
+
+        result = TimeTask.timeIt(() ->
+            {
+                sort(array);
+            }
+        );
+
+        // System.out.println(Arrays.toString(array));
+        System.out.printf("Time taken: %,d nanoseconds%n", result);
+
     }
 }

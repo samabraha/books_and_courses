@@ -7,13 +7,38 @@ import javax.sound.sampled.SourceDataLine;
 import chapter_01.TimeTask;
 
 public class SelectionSort {
+    private static final Random random = ThreadLocalRandom.current();
+
+    public static void main(String[] args) {
+        if (args.length < 2) {
+            System.err.println("Wrong number of arguments: ");
+            return;
+        } 
+
+        final int SIZE = Integer.parseInt(args[0]);
+        final int MAX = Integer.parseInt(args[1]);
+
+        // System.out.println(Arrays.toString(array));
+
+        // System.out.printf("Beffore: %,d nanoseconds%n", TimeTask.timeIt(() -> selectionSort(array)));        
+
+        final int[] array = getRandomNumbers(SIZE, MAX);
+
+        System.out.printf("Time taken: %,d nanoseconds%n", TimeTask.timeIt(() -> modifiedSelectSort(array)));
+        System.out.println(Arrays.toString(array));
+
+        final int[] array2 = getRandomNumbers(SIZE, MAX);
+        System.out.printf("Time taken: %,d nanoseconds%n", TimeTask.timeIt(() -> selectionSort(array2)));
+
+    }
 
     public static void swap(int[] array, int a, int b) {
         int temp = array[a];
         array[a] = array[b];
         array[b] = temp;
     }
-    public static void sort(int array[]) {
+
+    public static void selectionSort(int array[]) {
         
         for (int i = 0; i < array.length; i++) {
             int lowestItem = i;
@@ -26,41 +51,21 @@ public class SelectionSort {
         }
     }
 
-    public static void main(String[] args) {
-        if (args.length < 2) {
-            System.err.println("Wrong number of arguments: ");
-            return;
-        } 
+    public static void modifiedSelectSort(int array[]) {
+        int valley = 0;
+        int crest = array.length - 1;
+        boolean swapped = true;
+        for (int i = valley; swapped; sw) {
+            swapped = false;
+        }
+    }
 
-        Random random = ThreadLocalRandom.current();
-
-        final int SIZE = Integer.parseInt(args[0]);
-        final int MAX = Integer.parseInt(args[1]);
-
-
-        int[] array = new int[SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            array[i] = random.nextInt(MAX);
+    public static int[] getRandomNumbers(int size, int maxValue) {
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = random.nextInt(maxValue + 1);
         }
 
-        // System.out.println(Arrays.toString(array));
-
-        long result = TimeTask.timeIt(() ->
-            {
-                sort(array);
-            }
-        );
-
-        System.out.printf("Beffore: %,d nanoseconds%n", result);
-
-        result = TimeTask.timeIt(() ->
-            {
-                sort(array);
-            }
-        );
-
-        // System.out.println(Arrays.toString(array));
-        System.out.printf("Time taken: %,d nanoseconds%n", result);
-
+        return array;
     }
 }

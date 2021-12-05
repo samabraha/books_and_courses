@@ -2,8 +2,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.sound.sampled.SourceDataLine;
-
 import chapter_01.TimeTask;
 
 public class SelectionSort {
@@ -55,7 +53,7 @@ public class SelectionSort {
         int valley = 0;
         int crest = array.length - 1;
         boolean swapped = true;
-        for (int i = valley; swapped; sw) {
+        for (int i = valley; swapped;) {
             swapped = false;
         }
     }

@@ -1,8 +1,7 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Intersection {
-    public static int[] intersection(int[] array1, int[] array2) {
+    public static List<Integer> intersection(int[] array1, int[] array2) {
         int[] largerArray;
         int[] smallerArray;
         
@@ -13,16 +12,26 @@ public class Intersection {
             largerArray = array2;
             smallerArray = array1;
         }
-        
-        int[] intersection = new int[smallerArray.length];
 
-        Map<Integer> map = new HashMap<>();
-        map.fill(largerArray);
-        for (int element : smallerArray) {
-            if (map.get(element) != null) {
-                intersection[element] = element;
+        Map<Integer, Boolean> map = new HashMap<>();
+        
+        for (int element : largerArray) {
+            map.put(element, true);
+        }
+
+        List<Integer> intersection = new ArrayList<>(smallerArray.length);
+        for (int i = 0; i < smallerArray.length; i++) {
+            if (map.get(smallerArray[i]) != null) {
+                intersection.add(smallerArray[i]);
             }
         }
+        
         return intersection;
+    }
+
+    public static void main(String[] args) {
+        int[] a = {1, 3, 5, 6, 7, 11};
+        int[] b = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 11};
+        System.out.println(intersection(a, b));
     }
 }

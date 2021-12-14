@@ -1,9 +1,15 @@
 def first_non_duplicated(word):
     map = {}
-    keys = [word]
-    vals [True] * len(word)
-    map = dict(zip(keys, vals))
+    duplicates = {}
+    for l in word:
+        if l not in map:
+            map.setdefault(l, True)
+        else:
+            duplicates.setdefault(l, True)
+    print(map.keys())
+    return duplicates.keys()
 
-    print(map)
 
-first_non_duplicated("Hello")
+word = input("Enter word: ")
+
+print(first_non_duplicated(word))

@@ -4,7 +4,7 @@ function isSubset(array1, array2) {
 
     if (array1.length > array2.length) {
         largerArray = array1;
-	smallerArray = array2;
+	    smallerArray = array2;
     } else {
         largerArray = array2;
         smallerArray = array1;
@@ -33,16 +33,34 @@ function hashSubset(array1, array2) {
     let smallerArray;
     let hashTable = {};
 
+    if (array1.length > array2.length) {
+        largerArray = array1;
+	    smallerArray = array2;
+    } else {
+        largerArray = array2;
+        smallerArray = array1;
+    }
 
+    for (const value of largerArray) {
+        hashTable[value] = true;
+    }
+
+    for (const value of smallerArray) {
+        if (!hashTable[value]) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 // let array1 = [1, 2, 3, 4, 5, 6]
 // let array2 = [1, 2, 3, 4, 5, 7]
 
 let array1 = ["Red", "Orange", "Yellow", "Green", "Blue"];
-let array2 = ["Red", "Orange", "Yellow", "Green", "Lime"];
+let array2 = ["Red", "Orange", "Yellow", "Green"];
 
 console.log("A: " + array1)
 console.log("B: " + array2)
 
-console.log(isSubset(array1, array2));
+console.log(hashSubset(array1, array2));

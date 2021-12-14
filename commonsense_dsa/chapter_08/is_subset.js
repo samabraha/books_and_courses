@@ -28,8 +28,19 @@ function isSubset(array1, array2) {
     return true;
 }
 
-let array1 = [1, 2, 3, 4, 5, 6]
-let array2 = [1, 2, 3, 4, 5, 7]
+function hashSubset(array1, array2) {
+    let largerArray;
+    let smallerArray;
+    let hashTable = {};
+
+
+}
+
+// let array1 = [1, 2, 3, 4, 5, 6]
+// let array2 = [1, 2, 3, 4, 5, 7]
+
+let array1 = ["Red", "Orange", "Yellow", "Green", "Blue"];
+let array2 = ["Red", "Orange", "Yellow", "Green", "Lime"];
 
 console.log("A: " + array1)
 console.log("B: " + array2)

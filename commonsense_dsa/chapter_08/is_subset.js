@@ -1,4 +1,4 @@
-function is_subset(array1, array2) {
+function isSubset(array1, array2) {
     let largerArray;
     let smallerArray;
 
@@ -28,3 +28,10 @@ function is_subset(array1, array2) {
     return true;
 }
 
+let array1 = [1, 2, 3, 4, 5, 6]
+let array2 = [1, 2, 3, 4, 5, 7]
+
+console.log("A: " + array1)
+console.log("B: " + array2)
+
+console.log(isSubset(array1, array2));

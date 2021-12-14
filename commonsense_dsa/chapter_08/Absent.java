@@ -10,11 +10,11 @@ public class Absent {
         }
 
         // abcdefghijklmnopqrstuvwxyz
-        char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         List<Character> absent = new ArrayList<>();
         for (Character ch : alphabet) {
             if (
-                (!mappedInput.containsKey(Character.toLowerCase(ch))) && (!mappedInput.containsKey(Character.toUpperCase(ch)))
+                (!(mappedInput.containsKey(Character.toLowerCase(ch)) || mappedInput.containsKey(Character.toUpperCase(ch)))_
                 ) {
                 absent.add(ch);
             }

@@ -14,19 +14,19 @@ public class Absent {
         List<Character> absent = new ArrayList<>();
         for (Character ch : alphabet) {
             if (
-                (!(mappedInput.containsKey(Character.toLowerCase(ch)) || mappedInput.containsKey(Character.toUpperCase(ch)))_
+                !(mappedInput.containsKey(Character.toLowerCase(ch)) || mappedInput.containsKey(Character.toUpperCase(ch)))
                 ) {
                 absent.add(ch);
             }
         }
-        System.out.println(absent);
-        return absent.toArray().toString();
+        
+        return String.join(((CharSequence[]) absent.toArray()));
     }
 
     public static void main(String... args) {
         String input = args[0];
         
         var x = absentLetters(input);
-        
+        System.out.println(x);
     }
 }

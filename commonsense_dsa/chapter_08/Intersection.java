@@ -13,12 +13,16 @@ public class Intersection {
             largerArray = array2;
             smallerArray = array1;
         }
-
-
+        
         int[] intersection = new int[smallerArray.length];
 
-        Map<Integer> map = new HashMap<Integer>();
+        Map<Integer> map = new HashMap<>();
         map.fill(largerArray);
+        for (int element : smallerArray) {
+            if (map.get(element) != null) {
+                intersection[element] = element;
+            }
+        }
         return intersection;
     }
 }

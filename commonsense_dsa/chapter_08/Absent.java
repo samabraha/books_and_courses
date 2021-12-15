@@ -23,10 +23,11 @@ public class Absent {
         return String.join(((CharSequence[]) absent.toArray()));
     }
 
-    public static void main(String... args) {
+    public static void main(String[] args) {
         String input = args[0];
         
         var x = absentLetters(input);
         System.out.println(x);
+
     }
 }

@@ -1,9 +1,13 @@
-def fib(n):
+def fib(n, flist):
     if n == 0 or n == 1:
-        return n
+        return n    
     
-    return fib(n - 2) + fib(n - 1)
+    if not flist.get(n):
+        flist[n] = fib(n - 2, flist) + fib(n - 1, flist)
+    return flist[n]
+    # return fib(n - 2) + fib(n - 1)
 
-# tests = [0, 1, 4, 5, 6, 23, 14]
-for n in range(35):
-    print(f'{n}th fib is {fib(n)}')
+for n in range(100):
+    print(f'{n}th fib is {fib(n, {})}')
+    # print(f'{n}th fib is {fib(n)}')
+

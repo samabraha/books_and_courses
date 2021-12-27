@@ -25,8 +25,6 @@ node_2.next_node = node_3
 node_3.next_node = node_4
 node_4.next_node = node_5
 
-print(node_1)
-print(node_2)
+list = LinkedList.new(node_1)
 
-p node_1
-p node_2
+p list

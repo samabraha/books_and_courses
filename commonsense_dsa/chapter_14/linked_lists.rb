@@ -12,6 +12,21 @@ class LinkedList
     def initialize(first_node)
         @first_node = first_node
     end
+
+    def read(index)
+        current_node = first_node
+        current_index = 0
+
+        while current_index < index do
+            current_node = current_node.next_node
+
+            current_index += 1
+
+            return nil unless current_node
+        end
+
+        return current_node.data
+    end
 end
 
 node_1 = Node.new("Luevenhoek")
@@ -27,4 +42,4 @@ node_4.next_node = node_5
 
 list = LinkedList.new(node_1)
 
-p list
+p list.read(3)

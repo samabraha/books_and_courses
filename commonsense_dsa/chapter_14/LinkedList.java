@@ -1,5 +1,3 @@
-package com.develogica.POJOs;
-
 import java.util.Objects;
 
 class Node {

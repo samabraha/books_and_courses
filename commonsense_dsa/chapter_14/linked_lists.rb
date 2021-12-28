@@ -1,137 +1,104 @@
-package com.develogica.POJOs;
+class Node
+    attr_accessor :data, :next_node
 
-import java.util.Objects;
+    def initialize(data)
+        @data = data
+    end
+end
 
-class Node {
-    String data;
-    Node next = null;
+class LinkedList
+    attr_accessor :first_node
 
-    public Node(String data) {
-        this.data = data;
-    }
+    def initialize(first_node)
+        @first_node = first_node
+    end
 
-    @Override
-    public String toString() {
-        return data;
-    }
+    def read(index)
+        current_node = first_node
+        current_index = 0
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof Node)) {
-            return false;
-        }
+        while current_index < index do
+            current_node = current_node.next_node
 
-        return ((Node) obj).data.equalsIgnoreCase(this.data);
-    }
+            current_index += 1
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(this.data);
-    }
-}
+            return nil unless current_node
+        end
 
-public class LinkedList {
-    Node first;
-    int size = 0;
+        return current_node.data
+    end
 
-    public LinkedList(String data) {
-        this.first = new Node(data);
-        size++;
-    }
+    def index_of(value)
+        current_node = first_node
+        current_index = 0
 
-    public void add(String data) {
-        Node node = new Node(data);
-        add(node);
-    }
+        begin
+            if current_node.data == value
+                return current_index
+            end
 
-    public void add(Node node) {
-        if (size == 0) {
-            first = node;
+            current_node = current_node.next_node
+            current_index += 1
+        end while current_node
 
-        } else {
-            var currentNode = first;
-            while (currentNode.next != null) {
-                currentNode = currentNode.next;
-            }
+        return nil
+    end
 
-            currentNode.next = node;
-        }
-        size++;
-    }
+    def insert_at_index(index, value)
+        new_node = Node.new(value)
 
-    public void addAtIndex(int index, String data) throws IllegalAccessException {
-        addAtIndex(index, new Node(data));
-    }
+        if index == 0
+            new_node.next_node = first_node
 
-    public void addAtIndex(int index, Node node) throws IllegalAccessException {
-        if (index > size) {
-            throw new IllegalAccessException("index:$1%d greater than size:$2%d".formatted(index, size));
-        }
+            self.first_node = new_node
+            return
+        end
 
-        var currentNode = first;
-        for (int i = 0; i < index - 1; i++) {
-            currentNode = currentNode.next;
-        }
+        current_node = first_node
+        current_index = 0
 
-        var newNode = node;
-        newNode.next = currentNode.next;
-        currentNode.next = newNode;
-    }
+        while current_index < (index - 1) do
+            current_node = current_node.next_node
+            current_index += 1
+        end
 
-    public boolean delete(String data) {
-        return delete(new Node(data));
-    }
+        new_node.next_node = current_node.next_node
+        current_node.next_node = new_node
+    end
 
-    public boolean delete(Node deleteNode) {
-        if (size == 0) {
-            return false;
-        }
+    def delete_at_index(index)
+        if index == 0
+            self.first_node = first_node.next_node
+            return
+        end
 
-        var currentNode = first;
-        if (currentNode.equals(deleteNode)){
-            first = first.next;
-            size--;
-            return true;
-        }
-        while (currentNode.next != null) {
-            if (currentNode.next.equals(deleteNode)) {
-                currentNode.next = currentNode.next.next;
-                size--;
-                return true;
-            }
-            currentNode = currentNode.next;
-        }
+        current_node = first_node
+        current_index = 0
 
-        return false;
-    }
+        while current_index < (index - 1) do
+            current_node = current_node.next_node
+            current_index += 1
+        end
+        
+        node_after_deleted_node = current_node.next_node.next_node
 
-    private void printAll() {
-        if (size == 0) {
-            System.out.println("Nothing to print.");
-            return;
-        }
+        current_node.next_node = node_after_deleted_node
+    
+    end
+end
 
-        var currentNode = first;
-        System.out.print(currentNode + " ");
-        while (currentNode.next != null) {
-            System.out.print(currentNode.next + " ");
-            currentNode = currentNode.next;
-        }
-    }
+node_1 = Node.new("Luevenhoek")
+node_2 = Node.new("Darwin")
+node_3 = Node.new("Pasteur")
+node_4 = Node.new("Watson")
+node_5 = Node.new("Crick")
 
-    public static void main(String[] args) throws IllegalAccessException {
-        LinkedList linkedList = new LinkedList("Socrates");
-        linkedList.add("Plato");
-        linkedList.add("12");
-        linkedList.addAtIndex(linkedList.size, "Xenophon");
-        linkedList.printAll();
-        System.out.println();
-        linkedList.delete("Socrates");
-        linkedList.printAll();
-    }
-}
+node_1.next_node = node_2
+node_2.next_node = node_3
+node_3.next_node = node_4
+node_4.next_node = node_5
 
+list = LinkedList.new(node_1)
 
+p list.read(0)
+p list.index_of("Darwin")

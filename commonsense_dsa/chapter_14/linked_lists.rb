@@ -1,84 +1,137 @@
-class Node
-    attr_accessor :data, :next_node
+package com.develogica.POJOs;
 
-    def initialize(data)
-        @data = data
-    end
-end
+import java.util.Objects;
 
-class LinkedList
-    attr_accessor :first_node
+class Node {
+    String data;
+    Node next = null;
 
-    def initialize(first_node)
-        @first_node = first_node
-    end
+    public Node(String data) {
+        this.data = data;
+    }
 
-    def read(index)
-        current_node = first_node
-        current_index = 0
+    @Override
+    public String toString() {
+        return data;
+    }
 
-        while current_index < index do
-            current_node = current_node.next_node
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Node)) {
+            return false;
+        }
 
-            current_index += 1
+        return ((Node) obj).data.equalsIgnoreCase(this.data);
+    }
 
-            return nil unless current_node
-        end
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.data);
+    }
+}
 
-        return current_node.data
-    end
+public class LinkedList {
+    Node first;
+    int size = 0;
 
-    def index_of(value)
-        current_node = first_node
-        current_index = 0
+    public LinkedList(String data) {
+        this.first = new Node(data);
+        size++;
+    }
 
-        begin
-            if current_node.data == value
-                return current_index
-            end
+    public void add(String data) {
+        Node node = new Node(data);
+        add(node);
+    }
 
-            current_node = current_node.next_node
-            current_index += 1
-        end while current_node
+    public void add(Node node) {
+        if (size == 0) {
+            first = node;
 
-        return nil
-    end
+        } else {
+            var currentNode = first;
+            while (currentNode.next != null) {
+                currentNode = currentNode.next;
+            }
 
-    def insert_at_index(index, value)
-        new_node = Node.new(value)
+            currentNode.next = node;
+        }
+        size++;
+    }
 
-        if index == 0
-            new_node.next_node = first_node
+    public void addAtIndex(int index, String data) throws IllegalAccessException {
+        addAtIndex(index, new Node(data));
+    }
 
-            self.first_node = new_node
-            return
-        end
+    public void addAtIndex(int index, Node node) throws IllegalAccessException {
+        if (index > size) {
+            throw new IllegalAccessException("index:$1%d greater than size:$2%d".formatted(index, size));
+        }
 
-        current_node = first_node
-        current_index = 0
+        var currentNode = first;
+        for (int i = 0; i < index - 1; i++) {
+            currentNode = currentNode.next;
+        }
 
-        while current_index < (index - 1) do
-            current_node = current_node.next_node
-            current_index += 1
-        end
+        var newNode = node;
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
+    }
 
-        new_node.next_node = current_node.next_node
-        current_node.next_node = new_node
-    end
-end
+    public boolean delete(String data) {
+        return delete(new Node(data));
+    }
 
-node_1 = Node.new("Luevenhoek")
-node_2 = Node.new("Darwin")
-node_3 = Node.new("Pasteur")
-node_4 = Node.new("Watson")
-node_5 = Node.new("Crick")
+    public boolean delete(Node deleteNode) {
+        if (size == 0) {
+            return false;
+        }
 
-node_1.next_node = node_2
-node_2.next_node = node_3
-node_3.next_node = node_4
-node_4.next_node = node_5
+        var currentNode = first;
+        if (currentNode.equals(deleteNode)){
+            first = first.next;
+            size--;
+            return true;
+        }
+        while (currentNode.next != null) {
+            if (currentNode.next.equals(deleteNode)) {
+                currentNode.next = currentNode.next.next;
+                size--;
+                return true;
+            }
+            currentNode = currentNode.next;
+        }
 
-list = LinkedList.new(node_1)
+        return false;
+    }
 
-p list.read(0)
-p list.index_of("Darwin")
+    private void printAll() {
+        if (size == 0) {
+            System.out.println("Nothing to print.");
+            return;
+        }
+
+        var currentNode = first;
+        System.out.print(currentNode + " ");
+        while (currentNode.next != null) {
+            System.out.print(currentNode.next + " ");
+            currentNode = currentNode.next;
+        }
+    }
+
+    public static void main(String[] args) throws IllegalAccessException {
+        LinkedList linkedList = new LinkedList("Socrates");
+        linkedList.add("Plato");
+        linkedList.add("12");
+        linkedList.addAtIndex(linkedList.size, "Xenophon");
+        linkedList.printAll();
+        System.out.println();
+        linkedList.delete("Socrates");
+        linkedList.printAll();
+    }
+}
+
+

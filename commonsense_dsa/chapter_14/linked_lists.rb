@@ -83,7 +83,6 @@ class LinkedList
         node_after_deleted_node = current_node.next_node.next_node
 
         current_node.next_node = node_after_deleted_node
-    
     end
 end
 

@@ -120,6 +120,17 @@ public class LinkedList {
         }
     }
 
+    private void reverse() {
+        if (size == 0) { return; }
+
+        var currentItem = first;
+        while (currentItem.next != null) {
+            var nxt = currentItem.next;
+            nxt.next = currentItem;
+            currentItem = nxt;
+        }
+    }
+
     public static void main(String[] args) throws IllegalAccessException {
         LinkedList linkedList = new LinkedList("Socrates");
         linkedList.add("Plato");
@@ -128,6 +139,8 @@ public class LinkedList {
         linkedList.printAll();
         System.out.println();
         linkedList.delete("Socrates");
+
+        linkedList.reverse();
         linkedList.printAll();
     }
 }

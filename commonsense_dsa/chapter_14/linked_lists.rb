@@ -27,6 +27,44 @@ class LinkedList
 
         return current_node.data
     end
+
+    def index_of(value)
+        current_node = first_node
+        current_index = 0
+
+        begin
+            if current_node.data == value
+                return current_index
+            end
+
+            current_node = current_node.next_node
+            current_index += 1
+        end while current_node
+
+        return nil
+    end
+
+    def insert_at_index(index, value)
+        new_node = Node.new(value)
+
+        if index == 0
+            new_node.next_node = first_node
+
+            self.first_node = new_node
+            return
+        end
+
+        current_node = first_node
+        current_index = 0
+
+        while current_index < (index - 1) do
+            current_node = current_node.next_node
+            current_index += 1
+        end
+
+        new_node.next_node = current_node.next_node
+        current_node.next_node = new_node
+    end
 end
 
 node_1 = Node.new("Luevenhoek")
@@ -42,4 +80,5 @@ node_4.next_node = node_5
 
 list = LinkedList.new(node_1)
 
-p list.read(3)
+p list.read(0)
+p list.index_of("Darwin")

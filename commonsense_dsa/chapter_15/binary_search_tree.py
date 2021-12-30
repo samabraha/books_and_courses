@@ -30,12 +30,10 @@ class TreeNode:
         
         elif valueToDelete < node.value:
             node.leftChild = delete(valueToDelete, node.leftChild)
-
             return node
         
         elif valueToDelete > node.value:
             node.rightChild = delete(valueToDelete, node.rightChild)
-
             return node
 
         elif valueToDelete == node.value:
@@ -56,11 +54,26 @@ class TreeNode:
         else: 
             nodeToDelete.value = node.value
             return node.rightChild
+        
+    def traverse_and_print(node):
+        if node is None:
+            return
 
+        TreeNode.traverse_and_print(node.leftChild)
+        print(node.value)
+        TreeNode.traverse_and_print(node.rightChild)
+    
+    def max_val(node):
+        if node.rightChild:
+            return TreeNode.max_val(node.rightChild)
+        else:
+            return node.value
 
-
-
+        
 node1 = TreeNode(25)
 node2 = TreeNode(75)
+
 root = TreeNode(50, node1, node2)
 
+TreeNode.traverse_and_print(root)
+print(TreeNode.max_val(root))

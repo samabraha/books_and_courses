@@ -37,3 +37,15 @@ class Trie:
                 self.collect_all_words(child_node, word + key, words)
         
         return words
+    
+    def autocomplete(self, prefix):
+        current_node = self.search(prefix)
+        if not current_node:
+            return None
+        return self.collect_all_words(current_node)
+    
+    def correct_user(self, prefix):
+        correction_list = self.autocomplete(prefix)
+        if len(correction_list) > 1:
+            correction_list.sort(key=lambda word : len(word), referse=True)
+            return correction_list[0]

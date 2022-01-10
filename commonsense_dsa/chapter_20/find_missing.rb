@@ -17,15 +17,13 @@ end
 def find_missing_number_2(array)
     x = array[0]
     array.each do |n|
-        if (n != x + 1) and n != x
-
-            return n
-        
-        else
+        if x == n or x == n - 1
             x = n
+        else
+            return x + 1
         end
     end
 end
 
-puts find_missing_number([0, 1, 2, 3, 4, 6, 7, 8])
-puts find_missing_number_2([0, 1, 2, 3, 4, 6, 7, 8])
+# puts find_missing_number([0, 1, 2, 3, 4, 6, 7, 8])
+puts find_missing_number_2([3, 4, 5, 6, 8])

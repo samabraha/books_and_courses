@@ -32,7 +32,7 @@ const depthFirstValues = (root) => {
     if (root === null) return [];
     const leftValues = depthFirstValues(root.left); 
     const rightValues = depthFirstValues(root.right);
-    return [ root, ...leftValues, ...rightValues ];
+    return [...leftValues, ...rightValues,  root];
     
 };
 
@@ -51,4 +51,6 @@ b.right = e;
 c.right = f;
 
 const array = depthFirstValues(a);
-console.log(...array);
+array.forEach(element => {
+    console.log(element.val);
+});

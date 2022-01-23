@@ -12,16 +12,20 @@ import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import util.Time;
+
 public class Window {
     private int width, height;
     private String title;
 
     private long glfwWindow;
 
-    private float r, g, b, a;
+    public float r, g, b, a;
     private boolean fadeToBlack = false;
 
     private static Window window = null;
+
+    private static Scene currentScene;
 
     private Window() {
         this.width = 1920;
@@ -31,6 +35,21 @@ public class Window {
         g = 1;
         b = 1;
         a = 1;
+    }
+
+    public static void changeScene(int newScene) {
+
+        switch (newScene) {
+            case 0 -> {
+                currentScene = new LevelEditorScene();
+            }
+            case 1 -> {
+                currentScene = new LevelScene();
+            }
+            default -> {
+                assert false : String.format("Unknown scene '%s'", newScene);
+            }
+        }
     }
 
     public static Window get() {
@@ -93,8 +112,15 @@ public class Window {
         glfwShowWindow(glfwWindow);
 
         GL.createCapabilities();
+
+        Window.changeScene(0);
     }
     private void loop() {
+        float beginTime = Time.getTime();
+        float endTime;
+        float dt = -1f;
+
+
         while (!glfwWindowShouldClose(glfwWindow)) {
             // Poll events
             glfwPollEvents();
@@ -102,20 +128,30 @@ public class Window {
             glClearColor(r, g, b, a);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            if (fadeToBlack) {
-                r = Math.max(r - 0.01f, 0);
-                g = Math.max(g - 0.01f, 0);
-                b = Math.max(b - 0.01f, 0);
+
+            if (dt >= 0) {
+                currentScene.update(dt);
             }
 
-            if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-//                System.out.println("Space key is pressed!");
-                fadeToBlack = true;
-            }
+//            if (fadeToBlack) {
+//                r = Math.max(r - 0.01f, 0);
+//                g = Math.max(g - 0.01f, 0);
+//                b = Math.max(b - 0.01f, 0);
+//            }
+//
+//            if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
+////                System.out.println("Space key is pressed!");
+//                fadeToBlack = true;
+//            }
 
 
 
             glfwSwapBuffers(glfwWindow);
+
+            endTime = Time.getTime();
+            dt = endTime - beginTime;
+            beginTime = endTime;
         }
     }
 }
+

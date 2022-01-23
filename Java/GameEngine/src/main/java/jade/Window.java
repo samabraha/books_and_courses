@@ -42,9 +42,11 @@ public class Window {
         switch (newScene) {
             case 0 -> {
                 currentScene = new LevelEditorScene();
+                currentScene.init();
             }
             case 1 -> {
                 currentScene = new LevelScene();
+                currentScene.init();
             }
             default -> {
                 assert false : String.format("Unknown scene '%s'", newScene);

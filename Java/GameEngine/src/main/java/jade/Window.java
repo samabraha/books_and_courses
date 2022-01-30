@@ -88,6 +88,9 @@ public class Window {
         // Configure GLFW
         glfwDefaultWindowHints();
 
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);

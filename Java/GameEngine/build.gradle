@@ -8,7 +8,7 @@ version '1.0-SNAPSHOT'
 
 project.ext.lwjglVersion = "3.3.0"
 project.ext.jomlVersion = "1.10.2"
-project.ext.lwjglNatives = "natives-linux"
+project.ext.lwjglNatives = "natives-windows"
 
 repositories {
     mavenCentral()
@@ -23,15 +23,16 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 
+    implementation "org.lwjgl:lwjgl-opengl:$lwjglVersion"
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 
-    implementation "org.lwjgl:lwjgl:3.3.0"
-    implementation "org.lwjgl:lwjgl-assimp"
-    implementation "org.lwjgl:lwjgl-glfw"
-    implementation "org.lwjgl:lwjgl-nfd"
-    implementation "org.lwjgl:lwjgl-openal"
-    implementation "org.lwjgl:lwjgl-opengl"
-    implementation "org.lwjgl:lwjgl-stb"
+    implementation "org.lwjgl:lwjgl:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-assimp:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-nfd:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-openal:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-opengl:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-stb:$lwjglVersion"
     runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-assimp::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
@@ -39,5 +40,5 @@ dependencies {
     runtimeOnly "org.lwjgl:lwjgl-openal::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
-    implementation "org.joml:joml:${jomlVersion}"
+    implementation "org.joml:joml:1.10.2"
 }

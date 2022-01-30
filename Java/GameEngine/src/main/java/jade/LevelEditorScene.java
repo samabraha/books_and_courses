@@ -1,6 +1,7 @@
 package jade;
 
 
+import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
 
 public class LevelEditorScene extends Scene {
@@ -9,24 +10,33 @@ public class LevelEditorScene extends Scene {
 //    private float timeToChangeScene = 2f;
 
     private String vertexShaderSource = """
-            #version 330 core
+            #version 330
+
             layout (location=0) in vec3 aPos;
             layout (location=1) in vec4 aColor;
+
             out vec4 fColor;
+
             void main()
             {
                 fColor = aColor;
                 gl_Position = vec4(aPos, 1.0);
             }
+
             """;
+
     private String fragmentShaderSource = """
-            #version 330 core 
+            #version 330
+
             in vec4 fColor;
+
             out vec4 color;
+
             void main()
             {
                 color = fColor;
             }
+
             """;
 
     private int vertexID, fragmentID, shaderProgram;
@@ -46,6 +56,7 @@ public class LevelEditorScene extends Scene {
 
         // Pass the shader source to the GPU
         glShaderSource(vertexID, vertexShaderSource);
+        glCompileShader(vertexID);
 
         // Check for errors in compilation
         int success = glGetShaderi(vertexID, GL_COMPILE_STATUS);
@@ -61,26 +72,29 @@ public class LevelEditorScene extends Scene {
 
         // Pass the shader source to the GPU
         glShaderSource(fragmentID, fragmentShaderSource);
+        glCompileShader(fragmentID);
 
         // Check for errors in compilation
         success = glGetShaderi(fragmentID, GL_COMPILE_STATUS);
-        if (success == GL_FALSE) {
+        if (success != GL_TRUE) {
             int len = glGetShaderi(fragmentID, GL_INFO_LOG_LENGTH);
             System.out.println("ERROR: 'defaultShader.glsl'\n\tFragment shader compilation failed.");
             System.out.println(glGetShaderInfoLog(fragmentID, len));
             assert false : "";
         }
 
-        // Link shaders and check for errors
+//         Link shaders and check for errors
         shaderProgram = glCreateProgram();
         glAttachShader(shaderProgram, vertexID);
         glAttachShader(shaderProgram, fragmentID);
         glLinkProgram(shaderProgram);
 
         success = glGetProgrami(shaderProgram, GL_COMPILE_STATUS);
+
         if (success == GL_FALSE) {
             int len = glGetProgrami(shaderProgram, GL_INFO_LOG_LENGTH);
-            System.out.println("ERROR: defaultShader.glsl\n\tLinking failed");
+            System.out.println("ERROR: 'defaultShader.glsl'\n" +
+                    "\tLinking of shaders failed");
             System.out.println(glGetProgramInfoLog(shaderProgram, len));
             assert false : "";
         }

@@ -60,9 +60,9 @@ class EmployeeTest {
         computeTax(employee.getSalary());
         employee.addPropertyChangeListener(EmployeeTest::handlePropertyChange);
 
-        employee.setSalary(30000.0);
-        employee.setSalary(30000.0);
-        employee.setSalary(40000.0);
+        employee.setSalary(30_000.0);
+        employee.setSalary(30_000.0);
+        employee.setSalary(40_000.0);
     }
 
     private static void handlePropertyChange(PropertyChangeEvent event) {
@@ -79,6 +79,4 @@ class EmployeeTest {
         double tax = salary * (TAX_PERCENT / 100);
         System.out.printf("Salary: %,.2f, Tax: %,.2f%n", salary, tax);
     }
-
-
 }

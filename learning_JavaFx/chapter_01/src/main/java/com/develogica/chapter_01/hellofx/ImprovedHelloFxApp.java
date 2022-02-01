@@ -1,9 +1,7 @@
-package com.develogica.improved;
+package com.develogica.chapter_01.hellofx;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,17 +23,13 @@ public class ImprovedHelloFxApp extends Application {
 
         Button greetBtn = new Button("Greet");
         Button exitBtn = new Button("Exit");
-        greetBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        greetBtn.setOnAction(event -> {
                 var name = nameFld.getText().trim();
-                if (name.length() > 0) {
-                    msg.setText("Hello " + name);
-                } else {
-                    msg.setText("Hello there");
-                }
+                msg.setText(
+                        String.format("Hello, %s!", name.length() > 0 ? name : "there")
+                );
             }
-        });
+        );
 
         exitBtn.setOnAction(event -> Platform.exit());
 

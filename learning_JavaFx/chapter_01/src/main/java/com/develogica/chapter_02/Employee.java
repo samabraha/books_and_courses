@@ -1,5 +1,6 @@
 package com.develogica.chapter_02;
 
+import javafx.beans.property.SimpleObjectProperty;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -55,14 +56,31 @@ public class Employee {
 
 class EmployeeTest {
     public static void main(String[] args) {
-        final Employee employee = new Employee("John Adams", 25000.00);
 
-        computeTax(employee.getSalary());
-        employee.addPropertyChangeListener(EmployeeTest::handlePropertyChange);
+        final Employee employee1 = new Employee();
 
-        employee.setSalary(30_000.0);
-        employee.setSalary(30_000.0);
-        employee.setSalary(40_000.0);
+        employee1.setName("John Adams");
+        employee1.setSalary(25000.00);
+
+        final var employee2 = new Employee("George Washington", 55000d);
+
+        computeTax(employee1.getSalary());
+        employee1.addPropertyChangeListener(EmployeeTest::handlePropertyChange);
+
+        employee1.setSalary(30_000.0);
+        employee1.setSalary(30_000.0);
+        employee1.setSalary(40_000.0);
+
+        var counter = new SimpleObjectProperty<Employee>();
+
+        counter.addListener(event -> {
+
+            Employee emp = counter.getValue();
+            System.out.printf("-> %s%n", emp);
+        });
+
+        counter.setValue(employee2);
+        counter.setValue(employee1);
     }
 
     private static void handlePropertyChange(PropertyChangeEvent event) {

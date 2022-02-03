@@ -1,7 +1,10 @@
 package com.develogica.chapter_02;
 
+import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.stage.Stage;
+
 
 public class BidirectionalBinding {
     public static void main(String[] args) {
@@ -9,20 +12,29 @@ public class BidirectionalBinding {
         IntegerProperty y = new SimpleIntegerProperty(2);
         IntegerProperty z = new SimpleIntegerProperty(3);
 
+        var propUtil = PropUtil.getInstance();
+
         String message = "Before binding:";
-        printProps(message, x, y, z);
+        propUtil.printProps(message, x, y, z);
 
         x.bindBidirectional(y);
         message = "After binding-1:";
-        printProps(message, x, y, z);
+        propUtil.printProps(message, x, y, z);
+
+        propUtil.namePrefix("var")
+                .beforeList("{")
+                .beforeItem("\n\t-> ")
+                .afterList("\n}")
+                .keyValueSeparator("], [")
+                .toggleAppendAfterLastItem();
 
         x.bindBidirectional(z);
         message = "After binding-2:";
-        printProps(message, x, y, z);
+        propUtil.printProps(message, x, y, z);
 
         z.set(19);
         message = "After changing z:";
-        printProps(message, x, y, z);
+        propUtil.printProps(message, x, y, z);
 
         x.unbindBidirectional(y);
         x.unbindBidirectional(z);
@@ -31,12 +43,7 @@ public class BidirectionalBinding {
         z.set(300);
 
         message = "After unbinding and changing them separately:";
-        printProps(message, x, y, z);
-    }
-
-    private static void printProps(String message, IntegerProperty x, IntegerProperty y, IntegerProperty z) {
-        System.out.println(message);
-        System.out.printf("\t[x:%d, y:%d, z:%d]%n", x.get(), y.get(), z.get());
-        System.out.println();
+        propUtil.printProps(message, x, y, z);
     }
 }
+

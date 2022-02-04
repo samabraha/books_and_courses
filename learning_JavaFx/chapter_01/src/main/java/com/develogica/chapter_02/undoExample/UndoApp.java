@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.nio.file.Files;
 import java.util.ArrayDeque;
 
 public class UndoApp extends Application {
@@ -100,6 +101,7 @@ public class UndoApp extends Application {
         public RemoveText(Text uiText, Pane root) {
             this.uiText = uiText;
             this.root = root;
+
         }
 
         @Override

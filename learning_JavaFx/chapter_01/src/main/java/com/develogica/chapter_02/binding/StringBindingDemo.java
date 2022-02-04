@@ -1,13 +1,17 @@
+/** Who gets to document a package? */
 package com.develogica.chapter_02.binding;
 
 import com.develogica.chapter_02.Book;
 import javafx.beans.binding.*;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 
 public class StringBindingDemo {
     public static void main(String[] args) {
         DoubleProperty radius = new SimpleDoubleProperty(7.0);
         DoubleProperty area = new SimpleDoubleProperty(0);
+
+
 
         StringProperty initString = new SimpleStringProperty("Radius = ");
 

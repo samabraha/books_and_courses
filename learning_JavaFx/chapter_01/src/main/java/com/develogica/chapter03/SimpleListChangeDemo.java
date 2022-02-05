@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 public class SimpleListChangeDemo {
     private static ObservableList<String> list = FXCollections.observableArrayList("one", "two", "three", "four", "five");
     public static void main(String[] args) {
-        list.addListener(SimpleListChangeDemo::onChanged);
+        list.addListener(SimpleListChangeDemo::otherChanged);
 
         System.out.println(list);
 
@@ -15,14 +15,35 @@ public class SimpleListChangeDemo {
 
         list.addAll("seven", "eight");
         FXCollections.sort(list);
+        list.add("nine");
         System.out.println(list);
 
         list.clear();
     }
 
+    public static void otherChanged(ListChangeListener.Change<? extends String> change) {
+        while (change.next()) {
+            if (change.wasPermutated()){
+                System.out.println("Permuted");
+            } else if(change.wasUpdated()) {
+                System.out.println("Updated");
+            } else if(change.wasReplaced()) {
+                System.out.println("Replaced");
+            } else  {
+                if (change.wasRemoved()) {
+                    System.out.println("Removed");
+                } else if (change.wasAdded()) {
+                    System.out.println("Added");
+                }
+            }
+        }
+    }
+
     public static void onChanged(ListChangeListener.Change<? extends String> change) {
         System.out.println("List has changed ");
+
         change.next();
+
         if (change.wasAdded()) {
             System.out.printf("\tAdded %d item(s)%n", change.getAddedSize());
         }

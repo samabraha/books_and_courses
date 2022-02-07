@@ -1,4 +1,4 @@
-package com.develogica.chapter03;
+package com.develogica.chapter_03;
 
 import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;

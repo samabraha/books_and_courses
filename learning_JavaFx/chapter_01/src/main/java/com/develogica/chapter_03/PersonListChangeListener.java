@@ -1,4 +1,4 @@
-package com.develogica.chapter03;
+package com.develogica.chapter_03;
 
 import javafx.collections.ListChangeListener;
 
@@ -65,7 +65,7 @@ public class PersonListChangeListener implements ListChangeListener<Person> {
         int addedSize = change.getAddedSize();
         var addedSubList = change.getAddedSubList();
 
-        System.out.println("Added size:: " + addedSize);
+        System.out.println("Added size: " + addedSize);
         System.out.println("Added range: " + getRangeText(change));
         System.out.println("Added list: " + addedSubList);
     }

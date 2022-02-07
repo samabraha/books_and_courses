@@ -1,8 +1,7 @@
-package com.develogica.chapter03;
+package com.develogica.chapter_03;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.ListChangeListener;
 
 public class Person implements Comparable<Person> {
     private StringProperty firstName = new SimpleStringProperty();

@@ -1,11 +1,16 @@
-package com.develogica;
+package com.develogica.chapter_03;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.apache.poi.ss.formula.functions.Log;
 
 public class ObservableListDemo {
+    public static System.Logger log = System.getLogger("Default");
+
+    
     public static void main(String[] args) {
         ObservableList<String> list = FXCollections.observableArrayList("one", "two");
+
         System.out.println("After creating list " + list);
 
         list.addAll("three", "four");

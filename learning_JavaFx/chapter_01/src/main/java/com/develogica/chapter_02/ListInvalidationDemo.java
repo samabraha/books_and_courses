@@ -1,4 +1,4 @@
-package com.develogica;
+package com.develogica.chapter_02;
 
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;

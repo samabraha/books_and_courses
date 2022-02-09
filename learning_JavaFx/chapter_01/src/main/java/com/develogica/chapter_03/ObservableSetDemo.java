@@ -31,6 +31,3 @@ public class ObservableSetDemo {
     }
 }
 
-public class ListPropertyDemo {
-
-}

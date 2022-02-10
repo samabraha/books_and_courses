@@ -17,6 +17,7 @@ import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Map;
 
+/**Excel processing class using the POI library. */
 public class JExcelTrial {
     public static void main(String[] args) {
 //        Map<String, Object[]> data = new TreeMap<>();

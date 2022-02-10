@@ -1,8 +1,4 @@
 
-N
-src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 q
 A.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml,d\2\d2e272dc4bd2828e4212faecc95bf5ee6913420d
 m
@@ -45,14 +41,10 @@ g
 7.idea/libraries/Maven__eu_hansolo_fx_heatmap_17_0_3.xml,8\c\8cf7db9ce8d0643257750c4e2ad90e81c9e760e8
 e
 5.idea/libraries/Maven__eu_hansolo_jdktools_17_0_3.xml,0\6\064914d63c9302f27bc686f9a8282249c2cc9064
-q
-A.idea/libraries/Maven__org_openjfx_javafx_controls_win_17_0_2.xml,2\d\2d1043291eca08eb48af99c69a9e4bfc6d6edac6
 i
 9.idea/libraries/Maven__org_openjfx_javafx_fxml_17_0_2.xml,e\4\e46704e5641402f2f89e8d7e55afd70356d609d9
 u
 E.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_17_1.xml,7\6\768a298153671b6184031c424028466edc4eb796
-m
-=.idea/libraries/Maven__org_openjfx_javafx_base_win_17_0_2.xml,0\2\0210237f721f6b4cb296c2c1078e27039dca0ead
 m
 =.idea/libraries/Maven__org_openjfx_javafx_controls_17_0_2.xml,9\9\99f966783434f667ab135567131ff6c0de48da84
 y
@@ -63,18 +55,10 @@ w
 G.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml,2\7\270540527cb59d1fbe8bdf590204d75131c28ef1
 z
 J.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_2.xml,0\b\0b3b5cd49de0f52301920d5a796e81fc32cd48a6
-l
-<.idea/libraries/Maven__org_openjfx_javafx_web_win_17_0_2.xml,6\b\6b3431f574c42f85cb74f92d2710992ac66fb66e
-n
->.idea/libraries/Maven__org_openjfx_javafx_media_win_17_0_2.xml,9\4\9416f5b74d1beeeec001b480c9d0817b7fc9654a
 h
 8.idea/libraries/Maven__org_openjfx_javafx_web_17_0_2.xml,2\6\2681aad5651ee35935a930b9d7c77f6034a969dc
-q
-A.idea/libraries/Maven__org_openjfx_javafx_graphics_win_17_0_2.xml,a\2\a2da1c846fc94078cb94a9206bc3e4d225e39b91
 j
 :.idea/libraries/Maven__org_openjfx_javafx_media_17_0_2.xml,0\d\0d3c3e5d625fcef741c1c43887993568973bb13d
-m
-=.idea/libraries/Maven__org_openjfx_javafx_fxml_win_17_0_2.xml,0\9\094996b65c84fcf031bdeec20ebf310120804b7a
 m
 =.idea/libraries/Maven__org_openjfx_javafx_graphics_17_0_2.xml,6\f\6ff07b2da847cc1cb0a45aa9be7ff1a9c93f559e
 v
@@ -93,3 +77,11 @@ o
 ?src/main/java/com/develogica/chapter_03/ObservableListDemo.java,a\8\a8b2dd20beb87729bf8d2c41af6c56076190025e
 c
 3src/main/java/com/develogica/other/JExcelTrial.java,f\e\fe03923bb549f97c4b6a4b709a3ecbc06bda3ec6
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+l
+<src/main/java/com/develogica/chapter_03/ListBindingDemo.java,3\4\34f8b99ed5e4734648836f86cc66f0b9f79951cd
+q
+Asrc/main/java/com/develogica/chapter_03/BindingListReference.java,0\0\0035a68cc2d099e6580c1659ed58461f1bccd390

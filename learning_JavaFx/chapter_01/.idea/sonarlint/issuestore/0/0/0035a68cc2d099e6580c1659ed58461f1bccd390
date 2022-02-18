@@ -1,5 +1,5 @@
 
-S	java:S106"9Replace this use of System.out or System.err by a logger.(Ø¿ÚÄÿÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(Ø“¿Ëøÿÿÿÿ
-]
-java:S1128"GRemove this unused import 'javafx.beans.property.SimpleStringProperty'.(ûÐùÑ
+Z	java:S106&"9Replace this use of System.out or System.err by a logger.(øºÑûúÿÿÿÿ8®ø¥Šï/
+U	java:S106'"9Replace this use of System.out or System.err by a logger.(×òÐ‰8¯ø¥Šï/
+Z	java:S106("9Replace this use of System.out or System.err by a logger.(·’–”ùÿÿÿÿ8°ø¥Šï/
+Z	java:S106)"9Replace this use of System.out or System.err by a logger.(øò•µùÿÿÿÿ8±ø¥Šï/

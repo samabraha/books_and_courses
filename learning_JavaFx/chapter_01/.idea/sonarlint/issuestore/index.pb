@@ -75,13 +75,19 @@ n
 >src/main/java/com/develogica/chapter_03/ObservableSetDemo.java,2\9\294e51c4a4188d727695adea28132bae6a076353
 o
 ?src/main/java/com/develogica/chapter_03/ObservableListDemo.java,a\8\a8b2dd20beb87729bf8d2c41af6c56076190025e
-c
-3src/main/java/com/develogica/other/JExcelTrial.java,f\e\fe03923bb549f97c4b6a4b709a3ecbc06bda3ec6
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
-l
-<src/main/java/com/develogica/chapter_03/ListBindingDemo.java,3\4\34f8b99ed5e4734648836f86cc66f0b9f79951cd
 q
 Asrc/main/java/com/develogica/chapter_03/BindingListReference.java,0\0\0035a68cc2d099e6580c1659ed58461f1bccd390
+l
+<src/main/java/com/develogica/chapter_03/ListBindingDemo.java,3\4\34f8b99ed5e4734648836f86cc66f0b9f79951cd
+c
+3src/main/java/com/develogica/other/JExcelTrial.java,f\e\fe03923bb549f97c4b6a4b709a3ecbc06bda3ec6
+l
+<src/main/java/com/develogica/chapter_04/ShowAndWaitDemo.java,a\a\aad89b6fc956ed88212af9535c52a23034abc28c
+j
+:src/main/java/com/develogica/chapter_04/StageModality.java,0\d\0d7ec9c246ea4f70d95c5448f83c1bbabafa6953
+j
+:src/main/java/com/develogica/chapter_04/StageStyleApp.java,f\1\f1588d2a2997fcded13346c3a168fe9ce9498561

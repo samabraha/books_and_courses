@@ -1,5 +1,15 @@
 
-J
-java:S3740"/Provide the parametrized type for this generic.(äĞÃşÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ë½şÂùÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ë½şÂùÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ë½şÂùÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ë½şÂùÿÿÿÿ
+U	java:S106!"9Replace this use of System.out or System.err by a logger.(¶ìÕÜ8Ô÷¥Šï/
+Z	java:S106""9Replace this use of System.out or System.err by a logger.(şĞäûÿÿÿÿ8Ö÷¥Šï/
+U	java:S106%"9Replace this use of System.out or System.err by a logger.(ğ™ıº8×÷¥Šï/
+Z	java:S106&"9Replace this use of System.out or System.err by a logger.(şĞäûÿÿÿÿ8Ø÷¥Šï/
+Z	java:S106)"9Replace this use of System.out or System.err by a logger.(Ãˆ£Îıÿÿÿÿ8Ù÷¥Šï/
+Z	java:S106*"9Replace this use of System.out or System.err by a logger.(şĞäûÿÿÿÿ8Ú÷¥Šï/
+Z	java:S106-"9Replace this use of System.out or System.err by a logger.(è††Éşÿÿÿÿ8Û÷¥Šï/
+Z	java:S106."9Replace this use of System.out or System.err by a logger.(şĞäûÿÿÿÿ8Ü÷¥Šï/
+Z	java:S1061"9Replace this use of System.out or System.err by a logger.(ğ½…ñÿÿÿÿÿ8İ÷¥Šï/
+Z	java:S1062"9Replace this use of System.out or System.err by a logger.(şĞäûÿÿÿÿ8Ş÷¥Šï/
+~
+java:S1192""\Define a constant instead of duplicating this literal "List: %s, Last item: %s%n%n" 5 times.(şĞäûÿÿÿÿ8à÷¥Šï/

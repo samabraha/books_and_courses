@@ -1,7 +1,11 @@
 package com.develogica.chapter_05;
 
 import javafx.application.Application;
+import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,12 +27,10 @@ public class HostDetailsApp extends Application {
         String yahooUrl = "https://www.yahoo.com";
 
         var openUrlButton = new Button("Go to Yahoo!");
-        openUrlButton.setOnAction(event -> {
-            getHostServices().showDocument(yahooUrl);
-        });
+        openUrlButton.setOnAction(event -> getHostServices().showDocument(yahooUrl));
 
         var showAlertButton = new Button("Show Alert");
-        showAlertButton.setOnAction(event -> showAlert());
+        showAlertButton.setOnAction(event -> showAlert(stage));
 
         var root = new VBox();
         root.getChildren().addAll(openUrlButton, showAlertButton);
@@ -60,16 +62,35 @@ public class HostDetailsApp extends Application {
         return map;
     }
 
-    private void showAlert() {
+    private void showAlert(Stage owner) {
         Stage s = new Stage(StageStyle.UTILITY);
+        s.initOwner(owner);
         s.initModality(Modality.WINDOW_MODAL);
+        var root = new VBox();
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.setPadding(new Insets(0, 5,  20, 5));
 
-        Label msgLabel = new Label("This is an FX Alert!");
-        Group root = new Group(msgLabel);
+        var message = """
+                This is an FX Alert with a new message.
+                This is second line of message.
+                Then comes the third line.
+                And a final one.
+                """;
+
+        message.lines().forEach(line -> root.getChildren().add(new Label(line)));
+
+        Button okButton = new Button("OK");
+        okButton.setPadding(new Insets(5));
+        okButton.setOnAction(event -> s.close());
+
+        root.getChildren().add(okButton);
+
         Scene scene = new Scene(root);
+        Node n = new Group();
 
         s.setScene(scene);
         s.setTitle("FX Alert");
         s.show();
+        s.setResizable(false);
     }
 }

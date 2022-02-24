@@ -16,7 +16,7 @@ import java.util.ArrayDeque;
 
 public class UndoApp extends Application {
 
-    private ArrayDeque<UIAction> history = new ArrayDeque<>();
+    private final ArrayDeque<UIAction> history = new ArrayDeque<>();
 
     public static void main(String[] args) {
         launch(args);

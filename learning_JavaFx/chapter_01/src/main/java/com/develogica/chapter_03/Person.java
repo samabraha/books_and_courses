@@ -4,8 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Person implements Comparable<Person> {
-    private StringProperty firstName = new SimpleStringProperty();
-    private StringProperty lastName = new SimpleStringProperty();
+    private final StringProperty firstName = new SimpleStringProperty();
+    private final StringProperty lastName = new SimpleStringProperty();
 
     public Person() {
         this.setFirstName("Unknown");

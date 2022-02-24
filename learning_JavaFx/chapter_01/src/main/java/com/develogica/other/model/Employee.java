@@ -6,9 +6,9 @@ public abstract class Employee {
     public static final String DEFAULT_NAME = "UNKNOWN";
     private static int nextId;
 
-    private Integer id;
+    private final Integer id;
     private String name;
-    private LocalDate hireDate;
+    private final LocalDate hireDate;
 
     public Employee() {
         this(DEFAULT_NAME);

@@ -3,10 +3,10 @@ package com.develogica.chapter_02;
 import javafx.beans.property.*;
 
 public class Book {
-    private StringProperty title =
+    private final StringProperty title =
             new SimpleStringProperty(this, "title", "Unknown");
-    private DoubleProperty price = new SimpleDoubleProperty(this, "price", 0.0);
-    private ReadOnlyStringWrapper ISBN =
+    private final DoubleProperty price = new SimpleDoubleProperty(this, "price", 0.0);
+    private final ReadOnlyStringWrapper ISBN =
             new ReadOnlyStringWrapper(this, "ISBN", "Unknown");
 
     public final String getISBN() {

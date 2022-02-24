@@ -1,6 +1,7 @@
 package com.develogica.chapter_06.bounds;
 
 import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
@@ -11,22 +12,23 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.geometry.Bounds;
-import javafx.geometry.Rectangle2D;
-import javafx.geometry.VPos;
+import javafx.geometry.*;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.Reflection;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -34,9 +36,11 @@ import javafx.scene.transform.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.converter.DoubleStringConverter;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -209,6 +213,25 @@ public class NodeBoundsApp extends Application {
 
     }
 
+    private void initializeBoundsPathTransition() {
+        LOCAL_BOUNDS_PATH_TRANSITION.setDuration(Duration.seconds(2));
+        LOCAL_BOUNDS_PATH_TRANSITION.setNode(LOCAL_BOUNDS_PATH_CIRCLE);
+        LOCAL_BOUNDS_PATH_TRANSITION.setOrientation(PathTransition.OrientationType.NONE);
+        LOCAL_BOUNDS_PATH_TRANSITION.setCycleCount(Timeline.INDEFINITE);
+
+        PARENT_BOUNDS_PATH_TRANSITION.setDuration(Duration.seconds(2));
+        PARENT_BOUNDS_PATH_TRANSITION.setNode(PARENT_BOUNDS_PATH_CIRCLE);
+        PARENT_BOUNDS_PATH_TRANSITION.setOrientation(PathTransition.OrientationType.NONE);
+        PARENT_BOUNDS_PATH_TRANSITION.setCycleCount(Timeline.INDEFINITE);
+
+        LAYOUT_BOUNDS_PATH_TRANSITION.setDuration(Duration.seconds(2));
+        LAYOUT_BOUNDS_PATH_TRANSITION.setNode(LAYOUT_BOUNDS_PATH_CIRCLE);
+        LAYOUT_BOUNDS_PATH_TRANSITION.setOrientation(PathTransition.OrientationType.NONE);
+        LAYOUT_BOUNDS_PATH_TRANSITION.setCycleCount(Timeline.INDEFINITE);
+
+
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         BorderPane root = new BorderPane();
@@ -281,6 +304,89 @@ public class NodeBoundsApp extends Application {
         restartBoundsTransitions();
     }
 
+    private void displayResults() {
+        Bounds layoutBounds = mainRect.getLayoutBounds();
+        Bounds localBounds = mainRect.getBoundsInLocal();
+        Bounds parentBounds = mainRect.getBoundsInParent();
+
+        layoutBoundsData.update(layoutBounds);
+        localBoundsData.update(localBounds);
+        parentBoundsData.update(parentBounds);
+
+    }
+
+    private void drawAllAxes() {
+        double x = 100;
+        double y = 100;
+
+        Point2D point = mainRect.localToParent(x, y);
+
+        if (point.getY() == y) {
+            parentXArrow.setVisible(false);
+            parentXAxisLabel.setVisible(false);
+
+            localXAxisLabel.setText("x-axis (Patent/Untransformed Local)");
+            drawLocalAxis();
+        } else {
+            this.parentXArrow.setVisible(true);
+            this.parentXAxisLabel.setVisible(true);
+
+            localXAxisLabel.setText("x-axis (Transformed Local)");
+            parentXAxisLabel.setText("x-axis (Parent/Untransformed Local)");
+
+            drawLocalAxis();
+            drawParentAxis();
+        }
+
+ if (point.getX() == x) {
+            parentYArrow.setVisible(false);
+            parentYAxisLabel.setVisible(false);
+
+            localYAxisLabel.setText("y-axis (Patent/Untransformed Local)");
+            drawLocalAxis();
+        } else {
+            this.parentYArrow.setVisible(true);
+            this.parentYAxisLabel.setVisible(true);
+
+            localYAxisLabel.setText("y-axis (Transformed Local)");
+            parentYAxisLabel.setText("y-axis (Parent/Untransformed Local)");
+
+            drawLocalAxis();
+            drawParentAxis();
+        }
+
+    }
+
+    private void drawParentAxis() {
+        parentYAxisLabel.setLayoutX(-1.0 * parentYAxisLabel.layoutBoundsProperty()
+                .get().getWidth() / 2.0);
+    }
+
+    private void drawLocalAxis() {
+        localYAxisLabel.setLayoutX(-1.0 * parentYAxisLabel.layoutBoundsProperty()
+                .get().getWidth() / 2.0);
+
+        localXAxisGroup.getTransforms().clear();
+        localYAxisGroup.getTransforms().clear();
+
+        List<Transform> transforms = getTransforms(true, true);
+        localYAxisGroup.getTransforms().addAll(transforms);
+        localYAxisGroup.getTransforms().addAll(transforms);
+    }
+
+    private Effect getEffect() {
+        Effect effect = null;
+        if (dropShadowEffect.isSelected()) {
+            effect = new DropShadow();
+        } else if (reflectionEffect.isSelected()) {
+            effect = new Reflection();
+        } else if (glowEffect.isSelected()) {
+            effect = new Glow();
+        }
+
+        return effect;
+    }
+
     private void showBounds() {
         if (layoutCbx.isSelected()) {
             Bounds bounds = mainRect.getLayoutBounds();
@@ -350,6 +456,73 @@ public class NodeBoundsApp extends Application {
         PARENT_BOUNDS_PATH_TRANSITION.stop();
         LOCAL_BOUNDS_PATH_TRANSITION.stop();
         this.animate();
+    }
+
+    private void animate() {
+        if (layoutAnimateCbx.isSelected()) {
+            LAYOUT_BOUNDS_PATH_CIRCLE.setVisible(true);
+            playLayoutBoundsPathTransition();
+        } else {
+            LAYOUT_BOUNDS_PATH_CIRCLE.setVisible(false);
+            LAYOUT_BOUNDS_PATH_TRANSITION.stop();
+        }
+
+        if (localAnimateCbx.isSelected()) {
+            LOCAL_BOUNDS_PATH_CIRCLE.setVisible(true);
+            playLocalBoundsPathTransition();
+        } else {
+            LOCAL_BOUNDS_PATH_CIRCLE.setVisible(false);
+            LOCAL_BOUNDS_PATH_TRANSITION.stop();
+        }
+
+        if (parentAnimateCbx.isSelected()) {
+            PARENT_BOUNDS_PATH_CIRCLE.setVisible(true);
+            playParentBoundsPathTransition();
+        } else {
+            PARENT_BOUNDS_PATH_CIRCLE.setVisible(false);
+            PARENT_BOUNDS_PATH_TRANSITION.stop();
+        }
+
+
+    }
+
+    private void playLayoutBoundsPathTransition() {
+        Bounds bounds = mainRect.getLayoutBounds();
+        Path path = new Path();
+        path.getElements().add(new MoveTo(bounds.getMinX(), bounds.getMinY()));
+        path.getElements().add(new LineTo(bounds.getMaxX(), bounds.getMinY()));
+        path.getElements().add(new LineTo(bounds.getMaxX(), bounds.getMaxY()));
+        path.getElements().add(new LineTo(bounds.getMinX(), bounds.getMaxY()));
+        path.getElements().add(new LineTo(bounds.getMinX(), bounds.getMinY()));
+
+        LAYOUT_BOUNDS_PATH_TRANSITION.setPath(path);
+        LAYOUT_BOUNDS_PATH_TRANSITION.play();
+    }
+
+    private void playLocalBoundsPathTransition() {
+        Bounds bounds = mainRect.getBoundsInLocal();
+        Path path = new Path();
+        path.getElements().add(new MoveTo(bounds.getMinX(), bounds.getMinY()));
+        path.getElements().add(new LineTo(bounds.getMaxX(), bounds.getMinY()));
+        path.getElements().add(new LineTo(bounds.getMaxX(), bounds.getMaxY()));
+        path.getElements().add(new LineTo(bounds.getMinX(), bounds.getMaxY()));
+        path.getElements().add(new LineTo(bounds.getMinX(), bounds.getMinY()));
+
+        LOCAL_BOUNDS_PATH_TRANSITION.setPath(path);
+        LOCAL_BOUNDS_PATH_TRANSITION.play();
+    }
+
+    private void playParentBoundsPathTransition() {
+        Bounds bounds = mainRect.getBoundsInParent();
+        Path path = new Path();
+        path.getElements().add(new MoveTo(bounds.getMinX(), bounds.getMinY()));
+        path.getElements().add(new LineTo(bounds.getMaxX(), bounds.getMinY()));
+        path.getElements().add(new LineTo(bounds.getMaxX(), bounds.getMaxY()));
+        path.getElements().add(new LineTo(bounds.getMinX(), bounds.getMaxY()));
+        path.getElements().add(new LineTo(bounds.getMinX(), bounds.getMinY()));
+
+        PARENT_BOUNDS_PATH_TRANSITION.setPath(path);
+        PARENT_BOUNDS_PATH_TRANSITION.play();
     }
 
     private void attachEventHandlers() {
@@ -503,19 +676,19 @@ public class NodeBoundsApp extends Application {
         TitledPane rectangleProps = new TitledPane("Rectangle", rectangleBox);
 
         VBox transformBox = new VBox();
-        transformBox.getChildren().addAll(transformBox, rotateBox, scaleBox, shearBox);
+        transformBox.getChildren().addAll(translateBox, rotateBox, scaleBox, shearBox);
         TitledPane transformProps = new TitledPane("Transformations", transformBox);
 
         TitledPane showBoundsControls = getShowBoundsControls();
         TitledPane effectPane = getEffectTitledPane();
 
-        Button resetAllButton = new Button();
+        Button resetAllButton = new Button("Reset All");
         resetAllButton.setOnAction(event -> resetAll());
 
-        Button saveButton = new Button();
+        Button saveButton = new Button("Save Layout as Image");
         saveButton.setOnAction(event -> saveLayoutAsImage());
 
-        Button exitButton = new Button();
+        Button exitButton = new Button("Exit");
         exitButton.setOnAction(event -> Platform.exit());
 
         HBox buttonBox = new HBox();
@@ -527,6 +700,93 @@ public class NodeBoundsApp extends Application {
                 buttonBox, showBoundsControls, rectangleProps, effectPane, transformProps);
 
         return vBox;
+    }
+
+    private void resetAll() {
+        xSlider.setValue(0.0);
+        ySlider.setValue(0.0);
+        widthSlider.setValue(RECTANGLE_WIDTH);
+        heightSlider.setValue(RECTANGLE_HEIGHT);
+        translateXSlider.setValue(0);
+        translateYSlider.setValue(0);
+        rotateSlider.setValue(0);
+        scaleXSlider.setValue(1.0);
+        scaleYSlider.setValue(1.0);
+        shearXSlider.setValue(0);
+        shearYSlider.setValue(0);
+
+        strokeSlider.setValue(RECTANGLE_STROKE_WIDTH);
+        rectStrokeColorChoiceBox.setValue(RECTANGLE_STROKE_COLOR_STR);
+
+        opacitySlider.setValue(RECTANGLE_OPACITY);
+        rectFillColorChoiceBox.setValue(RECTANGLE_FILL_COLOR_STR);
+
+        layoutAnimateCbx.setSelected(false);
+        parentAnimateCbx.setSelected(false);
+        localAnimateCbx.setSelected(false);
+
+        layoutCbx.setSelected(false);
+        parentCbx.setSelected(false);
+        localCbx.setSelected(false);
+
+        noneEffect.setSelected(true);
+    }
+
+    private TitledPane getEffectTitledPane() {
+        noneEffect.setToggleGroup(effectGroup);
+        noneEffect.setSelected(true);
+
+        dropShadowEffect.setToggleGroup(effectGroup);
+        reflectionEffect.setToggleGroup(effectGroup);
+        glowEffect.setToggleGroup(effectGroup);
+
+        var hBox = new HBox();
+        hBox.setPadding(new Insets(5));
+        hBox.getChildren().addAll(noneEffect, dropShadowEffect, reflectionEffect, glowEffect);
+
+        return new TitledPane("Effect", hBox);
+    }
+
+    private TitledPane getShowBoundsControls() {
+        ChangeListener<Boolean> listener1 = (observable, oldValue, newValue) -> relayout();
+        ChangeListener<Boolean> listener2 = (observable, oldValue, newValue) -> animate();
+
+        layoutCbx.selectedProperty().addListener(listener1);
+        parentCbx.selectedProperty().addListener(listener1);
+        localCbx.selectedProperty().addListener(listener1);
+
+        effectGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> relayout());
+
+        layoutAnimateCbx.selectedProperty().addListener(listener2);
+        parentAnimateCbx.selectedProperty().addListener(listener2);
+        localAnimateCbx.selectedProperty().addListener(listener2);
+
+        double w = 20.0;
+        double h = 10.0;
+
+        Rectangle recLayout = new Rectangle(w, h);
+        recLayout.setFill(LAYOUT_BOUNDS_RECT_FILL_COLOR);
+        recLayout.setStrokeWidth(BOUNDS_STROKE_WIDTH);
+        recLayout.setStroke(LAYOUT_BOUNDS_RECT_STROKE_COLOR);
+
+        Rectangle recParent = new Rectangle(w, h);
+        recParent.setFill(PARENT_BOUNDS_RECT_FILL_COLOR);
+        recParent.setStrokeWidth(BOUNDS_STROKE_WIDTH);
+        recParent.setStroke(PARENT_BOUNDS_RECT_FILL_COLOR);
+
+        Rectangle recLocal = new Rectangle(w, h);
+        recLocal.setFill(LOCAL_BOUNDS_RECT_FILL_COLOR);
+        recLocal.setStrokeWidth(BOUNDS_STROKE_WIDTH);
+        recLocal.setStroke(LOCAL_BOUNDS_RECT_STROKE_COLOR);
+
+        GridPane gridPane = new GridPane();
+        gridPane.addRow(1, recLayout, new Text("Layout Bounds:"), layoutCbx, layoutAnimateCbx);
+        gridPane.addRow(2, recParent, new Text("Parent Bounds:"), parentCbx, parentAnimateCbx);
+        gridPane.addRow(3, recLocal, new Text("Local Bounds:"), localCbx, localAnimateCbx);
+
+        TitledPane titledPane = new TitledPane("Show Bounds", gridPane);
+
+        return titledPane;
     }
 
     private void saveLayoutAsImage() {

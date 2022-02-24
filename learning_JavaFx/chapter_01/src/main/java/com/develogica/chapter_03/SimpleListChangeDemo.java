@@ -5,7 +5,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 public class SimpleListChangeDemo {
-    private static ObservableList<String> list = FXCollections.observableArrayList("one", "two", "three", "four", "five");
+    private static final ObservableList<String> list = FXCollections.observableArrayList("one", "two", "three", "four", "five");
     public static void main(String[] args) {
         list.addListener(SimpleListChangeDemo::otherChanged);
 

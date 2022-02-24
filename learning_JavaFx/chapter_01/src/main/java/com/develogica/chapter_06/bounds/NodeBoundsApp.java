@@ -30,6 +30,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.transform.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -39,7 +40,10 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class NodeBoundsApp extends Application {
     final static int AXIS_LENGTH = 150;
@@ -256,7 +260,96 @@ public class NodeBoundsApp extends Application {
     }
 
     private void relayout() {
+        mainRect.getTransforms().clear();
 
+        mainRect.setWidth(widthSlider.getValue());
+        mainRect.setHeight(heightSlider.getValue());
+        mainRect.setX(xSlider.getValue());
+        mainRect.setY(ySlider.getValue());
+
+        mainRect.getTransforms().addAll(getTransforms(true, true));
+
+        mainRect.setEffect(this.getEffect());
+
+        mainRect.setStrokeWidth(strokeSlider.getValue());
+        mainRect.setStroke(RECTANGLE_STROKE_COLOR);
+        mainRect.setStroke(Color.web(rectStrokeColorChoiceBox.getValue()));
+
+        drawAllAxes();
+        displayResults();
+        showBounds();
+        restartBoundsTransitions();
+    }
+
+    private void showBounds() {
+        if (layoutCbx.isSelected()) {
+            Bounds bounds = mainRect.getLayoutBounds();
+            layoutBoundsRect.setX(bounds.getMinX());
+            layoutBoundsRect.setY(bounds.getMinY());
+            layoutBoundsRect.setWidth(bounds.getWidth());
+            layoutBoundsRect.setHeight(bounds.getHeight());
+
+            layoutBoundsRect.setVisible(true);
+        } else {
+            layoutBoundsRect.setVisible(false);
+        }
+
+
+        if (parentCbx.isSelected()) {
+            Bounds bounds = mainRect.getBoundsInParent();
+            parentBoundsRect.setX(bounds.getMinX());
+            parentBoundsRect.setY(bounds.getMinY());
+            parentBoundsRect.setWidth(bounds.getWidth());
+            parentBoundsRect.setHeight(bounds.getHeight());
+
+            parentBoundsRect.setVisible(true);
+        } else {
+            parentBoundsRect.setVisible(false);
+        }
+
+        if (localCbx.isSelected()) {
+            Bounds bounds = mainRect.getBoundsInLocal();
+            localBoundsRect.setX(bounds.getMinX());
+            localBoundsRect.setY(bounds.getMinY());
+            localBoundsRect.setWidth(bounds.getWidth());
+            localBoundsRect.setHeight(bounds.getHeight());
+
+            localBoundsRect.setVisible(true);
+        } else {
+            localBoundsRect.setVisible(false);
+        }
+    }
+
+    private List<Transform> getTransforms(boolean includeScale, boolean includeShear) {
+        double tx = translateXSlider.getValue();
+        double ty = translateYSlider.getValue();
+
+        double scaleX = shearXSlider.getValue();
+        double scaleY = shearYSlider.getValue();
+        double shearX = shearXSlider.getValue();
+        double shearY = shearYSlider.getValue();
+        double rotation = rotateSlider.getValue();
+
+        List<Transform> transforms = new ArrayList<>();
+
+        transforms.add(new Translate(tx, ty));
+        transforms.add(new Rotate(rotation));
+
+        if (includeScale) {
+            transforms.add(new Scale(scaleX, scaleY));
+        }
+        if (includeShear) {
+            transforms.add(new Shear(shearX, shearY));
+        }
+
+        return transforms;
+    }
+
+    private void restartBoundsTransitions() {
+        LAYOUT_BOUNDS_PATH_TRANSITION.stop();
+        PARENT_BOUNDS_PATH_TRANSITION.stop();
+        LOCAL_BOUNDS_PATH_TRANSITION.stop();
+        this.animate();
     }
 
     private void attachEventHandlers() {
@@ -436,18 +529,6 @@ public class NodeBoundsApp extends Application {
         return vBox;
     }
 
-    private void resetAll() {
-
-    }
-
-    private TitledPane getShowBoundsControls() {
-        return null;
-    }
-
-    private TitledPane getEffectTitledPane() {
-        return null;
-    }
-
     private void saveLayoutAsImage() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters()
@@ -509,9 +590,6 @@ public class NodeBoundsApp extends Application {
         LAYOUT_BOUNDS_PATH_CIRCLE.setVisible(false);
     }
 
-    private void initializeBoundsPathTransition() {
-
-    }
 
     private void bindLabelsTSliders() {
         xLabel.textProperty().bind(

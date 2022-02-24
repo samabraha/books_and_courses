@@ -7,6 +7,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -259,7 +260,27 @@ public class NodeBoundsApp extends Application {
     }
 
     private void attachEventHandlers() {
+        ChangeListener<Number> listener = (observableValue, oldValue, newValue) -> relayout();
+        ChangeListener<String> listenerStr = (observableValue, oldValue, newValue) -> relayout();
 
+        xSlider.valueProperty().addListener(listener);
+        ySlider.valueProperty().addListener(listener);
+        widthSlider.valueProperty().addListener(listener);
+        heightSlider.valueProperty().addListener(listener);
+
+        strokeSlider.valueProperty().addListener(listener);
+        rectStrokeColorChoiceBox.valueProperty().addListener(listenerStr);
+
+        opacitySlider.valueProperty().addListener(listener);
+        rectFillColorChoiceBox.valueProperty().addListener(listenerStr);
+
+        translateXSlider.valueProperty().addListener(listener);
+        translateYSlider.valueProperty().addListener(listener);
+        rotateSlider.valueProperty().addListener(listener);
+        scaleXSlider.valueProperty().addListener(listener);
+        scaleYSlider.valueProperty().addListener(listener);
+        shearXSlider.valueProperty().addListener(listener);
+        shearYSlider.valueProperty().addListener(listener);
     }
 
     private VBox getTransformationControls() {

@@ -39,10 +39,10 @@ public class ColourfulRectangles extends Application {
 //                new Stop(0, Color.color(1.0, 0.5, 0.0)),
 //                new Stop(1, Color.color(.2, 1, 0.6))};
 
-        final int SIZE = 20;
+        final int SIZE = 50;
         List<Stop> stopList = new ArrayList<>();
         for (int i = 1; i <= SIZE; i++) {
-            stopList.add(new Stop((double) i / SIZE, Color.color(0.8, Math.random(), 0.5)));
+            stopList.add(new Stop((double) i / SIZE, Color.color(0.9, Math.random(), 0.4)));
         }
 
         linearGradient = new LinearGradient(0.0, 0.5, 1.0, 0.5,
@@ -72,6 +72,8 @@ public class ColourfulRectangles extends Application {
         buttonExit.setOnAction(event -> Platform.exit());
 
         var controlsHBox = new HBox(buttonRecolor, buttonExit);
+        buttonRecolor.setPrefWidth(2 * (WIDTH / 3));
+        buttonExit.setPrefWidth(WIDTH / 3);
 
         var root = new VBox();
         root.getChildren().addAll(rectangle1, rectangle2, rectangle3, rectangle4, controlsHBox);

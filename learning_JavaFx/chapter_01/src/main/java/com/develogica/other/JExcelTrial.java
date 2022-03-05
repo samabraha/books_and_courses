@@ -2,10 +2,7 @@ package com.develogica.other;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -32,39 +29,58 @@ public class JExcelTrial {
 //        String fileName = "Q-Bank.xlsx";
 //        writeToExcel(data, fileName);
 
-        openExcel(fileName);
-    }
+        try (var wb = openExcel(fileName)) {
+            readSheet( wb.getSheetAt(0) );
 
-    private static void openExcel(String fileName) {
-        var file = new File(fileName);
-        if (file.exists()) {
-            if (file.getName().endsWith("xlsx")) {
-                readXLSX(file);
-            } else if (file.getName().endsWith("xls")) {
-                readHLSX(file);
+            var sh = wb.getSheetAt(0);
+            for (Row row : sh) {
+                for (Cell cell : row) {
+                    System.out.println("cell.getStringCellValue() = " + cell.getStringCellValue());
+                }
             }
-        }
-    }
-
-    private static Workbook readXLSX(File file) {
-        try (XSSFWorkbook workbook = new XSSFWorkbook(file)) {
-            readSheet( workbook.getSheetAt(0) );
-            return workbook;
-        } catch (IOException | InvalidFormatException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private static Workbook readHLSX(File file) {
-        try (HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(file))) {
-            readSheet( workbook.getSheetAt(0) );
-            return workbook;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
+
     }
+
+    private static Workbook openExcel(String fileName) {
+        var file = new File(fileName);
+        try {
+            return WorkbookFactory.create(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+//        if (file.exists()) {
+//            String fileExt = fileName.substring(fileName.length() - 4);
+//            if (fileExt.equalsIgnoreCase("xlsx")) {
+//                workBook = readXLSX(file);
+//            } else if (fileExt.equalsIgnoreCase(".xls")) {
+//                workBook = readHLSX(file);
+//            }
+//        }
+    }
+
+
+//    private static Workbook readXLSX(File file) {
+//        try (XSSFWorkbook workbook = new XSSFWorkbook(file)) {
+//            return workbook;
+//        } catch (IOException | InvalidFormatException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+//
+//    private static Workbook readHLSX(File file) {
+//        try (HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(file))) {
+//            return workbook;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     private static void readSheet(Sheet sheet) {
         Iterator<Row> rowIterator = sheet.rowIterator();
@@ -79,8 +95,6 @@ public class JExcelTrial {
             System.out.println();
         }
     }
-
-
 
     private static void processCell(Cell cell) {
         switch (cell.getCellType()) {

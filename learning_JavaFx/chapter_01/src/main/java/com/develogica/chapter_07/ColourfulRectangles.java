@@ -81,9 +81,8 @@ public class ColourfulRectangles extends Application {
         buttonExit.setOnAction(event -> Platform.exit());
 
         Button buttonRainbow = new Button("Shuffle Colors");
-        buttonRainbow.setOnAction(event -> {
-            rectangle5.setFill(rainbowMe(8));
-        });
+        buttonRainbow.setOnAction(event ->
+                rectangle5.setFill(rainbowMe(ThreadLocalRandom.current().nextInt(100) + 1)));
 
         var controlsHBox = new HBox(buttonRecolor, buttonRainbow, buttonExit);
         

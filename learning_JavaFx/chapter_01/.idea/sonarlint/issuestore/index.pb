@@ -2,17 +2,9 @@
 q
 A.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml,d\2\d2e272dc4bd2828e4212faecc95bf5ee6913420d
 m
-=.idea/libraries/Maven__com_github_virtuald_curvesapi_1_06.xml,3\6\364a21be3ec829ef84ff7fed1f4c3414fb1ba3d7
-m
 =.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_5_0_3.xml,9\7\97bafa1abbf53f77f24a3e6950a743831b368a38
-n
->.idea/libraries/Maven__org_apache_poi_poi_ooxml_lite_5_2_0.xml,8\8\88627f0dd4728ba4003c0db5116577f3e6f65462
 k
 ;.idea/libraries/Maven__commons_codec_commons_codec_1_15.xml,5\f\5fbe0020a09bbbf977802456f8263b7cc4dca685
-i
-9.idea/libraries/Maven__org_apache_poi_poi_ooxml_5_2_0.xml,1\9\190d60ad1e8daa730c68a73f0798a83ae23de223
-c
-3.idea/libraries/Maven__org_apache_poi_poi_5_2_0.xml,7\0\7023b95169855865144e448d68f75c1cc2533a12
 g
 7.idea/libraries/Maven__commons_io_commons_io_2_11_0.xml,e\5\e5c4da2304c9868ccf0ccc3925ef6ca4bdd74b05
 f

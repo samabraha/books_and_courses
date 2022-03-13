@@ -44,7 +44,7 @@ public class ColourfulRectangles extends Application {
 //                new Stop(1, Color.color(.2, 1, 0.6))};
 
         final int SIZE = 50;
-        List<Stop> stopList = new ArrayList<>();
+        List<Stop> stopList = new ArrayList<>(SIZE);
         for (int i = 1; i <= SIZE; i++) {
             stopList.add(new Stop((double) i / SIZE, Color.color(0.9, Math.random(), 0.5)));
         }

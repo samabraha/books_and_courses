@@ -19,8 +19,6 @@ k
 ;.idea/libraries/Maven__org_controlsfx_controlsfx_11_1_1.xml,1\d\1d64748f91f8af916aec6e33cd69a4d0d36b68e5
 t
 D.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_2.xml,f\7\f7708b974a0374187f3cf558c1e70622c0fe474a
-;
-helloFx.iml,9\e\9e4a4de792ebbd67476bf7c4cf081d9ea256f490
 g
 7.idea/libraries/Maven__eu_hansolo_toolboxfx_17_0_22.xml,d\3\d32e9f56cf6c6b3c99cbe2643fc645e09cd5ee0e
 h
@@ -69,8 +67,6 @@ o
 ?src/main/java/com/develogica/chapter_03/ObservableListDemo.java,a\8\a8b2dd20beb87729bf8d2c41af6c56076190025e
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-N
-src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
 q
 Asrc/main/java/com/develogica/chapter_03/BindingListReference.java,0\0\0035a68cc2d099e6580c1659ed58461f1bccd390
 l
@@ -83,3 +79,5 @@ j
 :src/main/java/com/develogica/chapter_04/StageModality.java,0\d\0d7ec9c246ea4f70d95c5448f83c1bbabafa6953
 j
 :src/main/java/com/develogica/chapter_04/StageStyleApp.java,f\1\f1588d2a2997fcded13346c3a168fe9ce9498561
+N
+src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7

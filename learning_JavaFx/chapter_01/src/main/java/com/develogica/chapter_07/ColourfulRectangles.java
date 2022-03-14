@@ -1,8 +1,9 @@
 package com.develogica.chapter_07;
 
+import com.develogica.util.ResourceUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Node;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -18,7 +19,7 @@ import javafx.stage.StageStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ColourfulRectangles extends Application {
@@ -71,7 +72,7 @@ public class ColourfulRectangles extends Application {
         var rectangle4 = new Rectangle(WIDTH, HEIGHT, linearGradient);
 
         var buttonRecolor = new Button("Recolor");
-        buttonRecolor.setOnAction(event -> rectangle4.setFill(Color.web(gerRandomColorString(), .5)));
+        buttonRecolor.setOnAction(event -> rectangle4.setFill(Color.web(ResourceUtil.gerRandomColorString(), .5)));
 
         linearGradient = rainbowMe(20);
         var rectangle5 = new Rectangle(WIDTH, HEIGHT, linearGradient);
@@ -103,17 +104,12 @@ public class ColourfulRectangles extends Application {
         stage.show();
     }
 
-    private String gerRandomColorString() {
-        var r = Integer.toHexString(ThreadLocalRandom.current().nextInt(16));
-        var g = Integer.toHexString(ThreadLocalRandom.current().nextInt(16));
-        var b = Integer.toHexString(ThreadLocalRandom.current().nextInt(16));
-        return String.format("#%s%s%s", r, g, b);
-    }
+
 
     private static LinearGradient rainbowMe(int numberOfColors) {
         var colorList = new ArrayList<Color>();
         while (colorList.size() < numberOfColors) {
-            colorList.add(getRandomColor());
+            colorList.add(ResourceUtil.getRandomColor());
         }
 
         Collections.shuffle(colorList);
@@ -131,10 +127,4 @@ public class ColourfulRectangles extends Application {
                 true, CycleMethod.NO_CYCLE,  stopList);
     }
 
-    public static Color getRandomColor() {
-        double r = ThreadLocalRandom.current().nextDouble();
-        double g = ThreadLocalRandom.current().nextDouble();
-        double b = ThreadLocalRandom.current().nextDouble();
-        return Color.color(r, g, b);
-    }
 }

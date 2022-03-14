@@ -1,5 +1,6 @@
 package com.develogica.chapter_07;
 
+import com.develogica.util.ResourceUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -16,11 +17,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.develogica.chapter_07.ColourfulRectangles.getRandomColor;
+
 
 public class RadialGradientDemo extends Application {
     public static void main(String[] args) {
@@ -41,7 +41,7 @@ public class RadialGradientDemo extends Application {
         final var stops = new ArrayList<Stop>(SIZE);
 
         for (int i = 0; i <= SIZE; i++) {
-            var stop = new Stop((double) i / SIZE, getRandomColor());
+            var stop = new Stop((double) i / SIZE, ResourceUtil.getRandomColor());
             stops.add(stop);
         }
 

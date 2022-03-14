@@ -2,6 +2,7 @@ package com.develogica.util;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -10,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ResourceUtil {
     private final static String RSRC_PATH_FROM_CURRRENT_DIR = "src/main";
@@ -36,4 +38,18 @@ public class ResourceUtil {
         return Path.of(RSRC_PATH_FROM_CURRRENT_DIR, "resources", inResourcesPath).toAbsolutePath().toString();
     }
 
+    public static String gerRandomColorString() {
+        var r = Integer.toHexString(ThreadLocalRandom.current().nextInt(16));
+        var g = Integer.toHexString(ThreadLocalRandom.current().nextInt(16));
+        var b = Integer.toHexString(ThreadLocalRandom.current().nextInt(16));
+        return String.format("#%s%s%s", r, g, b);
+    }
+
+
+    public static Color getRandomColor() {
+        double r = ThreadLocalRandom.current().nextDouble();
+        double g = ThreadLocalRandom.current().nextDouble();
+        double b = ThreadLocalRandom.current().nextDouble();
+        return Color.color(r, g, b);
+    }
 }

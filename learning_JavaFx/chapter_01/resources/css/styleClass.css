@@ -10,5 +10,13 @@
 }
 
 .button {
-    -fx-text-fill: blue;
+    -fx-text-fill: darkBlue;
+}
+
+#exitButton {
+    -fx-text-fill: maroon;
+}
+
+.root {
+    -fx-cursor: hand;
 }

@@ -25,6 +25,7 @@ public class StyleClassDemo extends Application {
         var okButton = new Button("OK");
 
         var exitButton = new Button("Exit");
+        exitButton.setId("exitButton");
         exitButton.setOnAction(event -> Platform.exit());
 
         var root = new HBox();

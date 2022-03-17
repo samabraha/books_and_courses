@@ -79,10 +79,6 @@ j
 :src/main/java/com/develogica/chapter_04/StageModality.java,0\d\0d7ec9c246ea4f70d95c5448f83c1bbabafa6953
 j
 :src/main/java/com/develogica/chapter_04/StageStyleApp.java,f\1\f1588d2a2997fcded13346c3a168fe9ce9498561
-N
-src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7
-;
-helloFx.iml,9/e/9e4a4de792ebbd67476bf7c4cf081d9ea256f490
 m
 =src/main/java/com/develogica/chapter_08/ButtonStyleSheet.java,f/e/fefa8251c731f53ecb893e06c8d4efb7edb651be
 p
@@ -91,7 +87,3 @@ l
 <src/main/java/com/develogica/chapter_08/InlineStyleDemo.java,b/0/b0bfcf4e96dba7ca96745d41cc3ed9e6f84f90ca
 o
 ?src/main/java/com/develogica/chapter_07/RadialGradientDemo.java,f/b/fb72893a10128d1bfab0f9f7f1897b96190f9995
-u
-Esrc/main/java/com/develogica/chapter_08/StylesheetPrioritiesDemo.java,9/5/95bfc9d3c382bc600a19c3e2f9b861ba5be59ceb
-k
-;src/main/java/com/develogica/chapter_08/CSSInheritance.java,a/e/ae510381cf2900018ba43eea7a4a7fa522ba0f3e

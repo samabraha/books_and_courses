@@ -42,3 +42,4 @@ public class StylesheetPrioritiesDemo extends Application {
         stage.show();
     }
 }
+

@@ -10,8 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class StyleClassDemo extends Application {
     public static void main(String[] args) {

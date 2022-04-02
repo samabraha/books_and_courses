@@ -100,7 +100,7 @@ public class JExcelTrial {
         switch (cell.getCellType()) {
             case STRING -> {
                 var val = cell.getStringCellValue();
-                System.out.print('\t' + val);
+                System.out.print("\t" + val);
             } case NUMERIC -> {
                 var num = cell.getNumericCellValue();
 //                NumberToTextConverter.toText(cell.getNumericCellValue());

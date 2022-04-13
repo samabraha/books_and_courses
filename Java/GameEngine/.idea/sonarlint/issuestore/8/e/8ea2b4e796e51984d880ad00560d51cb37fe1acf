@@ -1,0 +1,23 @@
+
+]
+java:S16590"GDeclare "fragmentID" and all following declarations on a separate line.(œ“¢Ï
+X
+java:S1659D"BDeclare "vboID" and all following declarations on a separate line.(Îóøî
+j
+java:S1450D"TRemove the "eboID" field and declare it as a local variable in the relevant methods.(Îóøî
+o
+java:S14500"YRemove the "fragmentID" field and declare it as a local variable in the relevant methods.(œ“¢Ï
+j
+java:S1450D"TRemove the "vboID" field and declare it as a local variable in the relevant methods.(Îóøî
+m
+java:S14500"WRemove the "vertexID" field and declare it as a local variable in the relevant methods.(œ“¢Ï
+Q	java:S125"<This block of commented-out lines of code should be removed.(òö¢‡
+Q	java:S125@"<This block of commented-out lines of code should be removed.(¹È¿ª
+N	java:S106W"9Replace this use of System.out or System.err by a logger.(ĞõÎ‚
+N	java:S106X"9Replace this use of System.out or System.err by a logger.(÷àÉã
+S	java:S106h"9Replace this use of System.out or System.err by a logger.(Öñí·ıÿÿÿÿ
+N	java:S106i"9Replace this use of System.out or System.err by a logger.(¡¾æ
+N	java:S106w"9Replace this use of System.out or System.err by a logger.(íÈ°è
+S	java:S106y"9Replace this use of System.out or System.err by a logger.(–ÑÜ´ùÿÿÿÿ
+]
+java:S2184"FCast one of the operands of this multiplication operation to a "long".(ùï²°

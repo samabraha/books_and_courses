@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-
+// */
 public class WindowEventsDemo extends Application {
     CheckBox canCloseCheckBox = new CheckBox("Can Close Window");
     public static void main(String[] args) {
@@ -24,8 +24,8 @@ public class WindowEventsDemo extends Application {
         hideButton.setOnAction(event -> { showDialog(stage); stage.hide(); });
 
         var root= new HBox();
-        root.setSpacing(20);
-        root.setPadding(new Insets(20));
+        root.setSpacing(15);
+        root.setPadding(new Insets(15));
         root.getChildren().addAll(canCloseCheckBox, hideButton, closeButton);
 
         var scene = new Scene(root);
@@ -50,8 +50,8 @@ public class WindowEventsDemo extends Application {
         });
 
         var root = new HBox();
-        root.setSpacing(20);
-        root.setPadding(new Insets(20));
+        root.setSpacing(15);
+        root.setPadding(new Insets(15));
         root.getChildren().addAll(closeButton);
 
         var scene = new Scene(root);
@@ -59,7 +59,6 @@ public class WindowEventsDemo extends Application {
         popup.setScene(scene);
         popup.setTitle("");
         popup.show();
-
     }
 
     private void handle(WindowEvent event) {

@@ -37,7 +37,6 @@ public class BorderStyleDemo extends Application {
         pane4.setPrefSize(200, 200);
         pane4.getStyleClass().add("my-style-4");
 
-
         root.getChildren().addAll(pane1, pane2, pane3, pane4);
         var scene = new Scene(root);
         scene.getStylesheets().addAll(styleSheetUrl);

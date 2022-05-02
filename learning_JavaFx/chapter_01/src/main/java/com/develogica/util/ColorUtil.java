@@ -41,15 +41,32 @@ public class ColorUtil {
         return Color.hsb(hue, saturation, brightness);
     }
 
+    public static Color getRandomColorForHue(int hueDegree) {
+        int hue;
+        if (betweenInclusive(hueDegree, 0, 360)) {
+            hue = hueDegree;
+        } else {
+            hue = Math.abs(hueDegree % 360);
+        }
+
+        var brightness = ThreadLocalRandom.current().nextInt(100 + 1) / 100.0;
+        var saturation = ThreadLocalRandom.current().nextInt(100 + 1) / 100.0;
+        return Color.hsb(hue, saturation, brightness);
+    }
+
     /**
-     * Creates a css rgb function for a random number
+     * Creates a css rgb function for a given {@code Color }
      */
-    public static String getRandomColorCssRgbFunction() {
-        Color color = getRandomColor();
+    public static String getCssRgbFunctionString(Color color) {
         var r = (int) (color.getRed() * 255);
         var g = (int) (color.getGreen() * 255);
         var b = (int) (color.getBlue() * 255);
         return "rgb(%d, %d, %d)".formatted(r, g, b);
+    }
+
+    /** A convenience method that creates a random Color and returns it as a css rgb function */
+    public static String getRandomColorCssRgbFunctionString() {
+        return getCssRgbFunctionString(getRandomColor());
     }
 }
 

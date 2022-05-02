@@ -1,6 +1,6 @@
 package com.develogica.chapter_07;
 
-import com.develogica.util.ResourceUtil;
+import com.develogica.util.ColorUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -41,7 +41,7 @@ public class RadialGradientDemo extends Application {
         final var stops = new ArrayList<Stop>(SIZE);
 
         for (int i = 0; i <= SIZE; i++) {
-            var stop = new Stop((double) i / SIZE, ResourceUtil.getRandomColor());
+            var stop = new Stop((double) i / SIZE, ColorUtil.getRandomColor());
             stops.add(stop);
         }
 

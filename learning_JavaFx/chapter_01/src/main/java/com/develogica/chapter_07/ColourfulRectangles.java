@@ -1,5 +1,6 @@
 package com.develogica.chapter_07;
 
+import com.develogica.util.ColorUtil;
 import com.develogica.util.ResourceUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -109,7 +110,7 @@ public class ColourfulRectangles extends Application {
     private static LinearGradient rainbowMe(int numberOfColors) {
         var colorList = new ArrayList<Color>();
         while (colorList.size() < numberOfColors) {
-            colorList.add(ResourceUtil.getRandomColor());
+            colorList.add(ColorUtil.getRandomColor());
         }
 
         Collections.shuffle(colorList);

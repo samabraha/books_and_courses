@@ -40,8 +40,6 @@ public class MouseEnteredExitedTarget extends Application {
         circle.addEventHandler(MouseEvent.MOUSE_ENTERED, circleHandler);
         circle.addEventHandler(MouseEvent.MOUSE_EXITED, circleHandler);
 
-
-
         var scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Mouse-Entered Mouse-Exited Target");

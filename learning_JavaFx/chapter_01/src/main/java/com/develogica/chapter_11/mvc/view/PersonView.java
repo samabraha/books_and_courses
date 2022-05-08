@@ -24,8 +24,8 @@ public class PersonView extends GridPane {
     TextField birthDateTxtFld = new TextField();
     TextField ageCategoryTxtFld = new TextField();
 
-    Button saveButton = new Button("Save");
-    Button closeButton = new Button("Close");
+    Button saveButton = new Button("_Save");
+    Button closeButton = new Button("_Close");
 
     String dateFormat;
 

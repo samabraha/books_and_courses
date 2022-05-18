@@ -2,6 +2,7 @@ package com.develogica.chapter_12;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,23 +21,28 @@ public class ButtonDemo extends Application {
     @Override
     public void start(Stage stage) {
 
+//
+//        var newButton = new Button("_New");
+//        newButton.setTooltip(new Tooltip());
+//        newButton.setOnAction(event -> createDocument());
+//
+//        var saveButton = new Button("_Save");
+//        saveButton.setDefaultButton(true);
+//        saveButton.setOnAction(event -> saveDocument());
+//
+//        var cancelButton = new Button("Cancel");
+//        cancelButton.setCancelButton(true);
+//        cancelButton.setOnAction(event -> cancel());
 
-        var newButton = new Button("_New");
-        newButton.setStyle("""
-                -fx-font-family: 'Helvetica', Arial, sans-serif;
-                """);
-        newButton.setTooltip(new Tooltip());
-        newButton.setOnAction(event -> createDocument());
+        var buttonBox = GUIFactory.getButtons(
+                new HandlerTextPair(event -> createDocument(), "_New"),
+                new HandlerTextPair(event -> saveDocument(), "_Save"),
+                new HandlerTextPair(event -> cancel(), "_Cancel")
+        );
 
-        var saveButton = new Button("_Save");
-        saveButton.setDefaultButton(true);
-        saveButton.setOnAction(event -> saveDocument());
-
-        var cancelButton = new Button("Cancel");
-        cancelButton.setCancelButton(true);
-        cancelButton.setOnAction(event -> cancel());
-
-        var buttonBox = new HBox(15, newButton, saveButton, cancelButton);
+//        var buttonBox = new HBox(15, newButton, saveButton, cancelButton);
+//        buttonBox.(15);
+        buttonBox.setPadding(new Insets(10));
 
         var textArea = new TextArea();
 

@@ -12,6 +12,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GUIFactory extends Application {
     public static void main(String... args) {
         launch(args);
@@ -56,7 +59,17 @@ public class GUIFactory extends Application {
 
         return pane;
     }
+
+    public static Pane getButtons(EventHandler<ActionEvent> handler, String... texts) {
+        List<HandlerTextPair> pairList = new ArrayList<>();
+        for (var text: texts) {
+            pairList.add(new HandlerTextPair(handler, text));
+        }
+
+        return getButtons(pairList.toArray(new HandlerTextPair[0]));
+    }
 }
 
 record HandlerTextPair(EventHandler<ActionEvent> handler, String text) {}
+
 
